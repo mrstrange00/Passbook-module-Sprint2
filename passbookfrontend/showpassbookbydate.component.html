@@ -1,0 +1,83 @@
+
+<style>
+    .add-box
+        {
+          height: 80%;
+          width: 30%;
+          border: 1px solid orchid;
+          margin-left: 35%;
+          margin-top: 10%;
+          position: relative;
+              box-shadow: 21px 12px 24px 10px rgba(0, 0, 0, .5);
+              background: #bababa;
+        }
+        .add-header
+        {
+          text-align: center;
+          font-family: "vardhana",cursive;
+          font-size: 35px;
+          background: linear-gradient(to bottom, #00bfff 0%, #0000ff 100%);
+          color:#fff;
+          position: relative;
+              box-shadow: 1px 3px 14px  rgba(0, 0, 0, .5);
+        }
+        .add-body
+        {
+          padding: 20px;
+          line-height: 2;
+        }
+        .backimg{
+      background-image: url("../assets/images/back1.png");
+      height:600px;
+      width: 100%;
+     }
+    </style>
+  <body>
+    <div  class="backimg">  
+  <div class="add-box">
+        <div class="add-header">Enter Details</div>
+        <div class="add-body">
+        <form class="form-group" #f1="ngForm" (ngSubmit)="showPassbookbyDate(accountNumber,startDate,endDate)">
+           <label for="account number"><b>Account Number </b> </label>
+           <input type="text" class="form-control col-sm-4" [(ngModel)]="accountNumber" name="accountNumber1"><br>
+           <label for="start Date"><b>Start Date </b> </label>
+           <input type="date" class="form-control col-sm-4" [(ngModel)]="startDate"  name="startDate1"><br>
+           <label for="end Date"><b>End Date </b> </label>
+           <input type="date" class="form-control col-sm-4" [(ngModel)]="endDate"  name="endDate1"><br>
+               <input type="submit" class="btn btn-success col-sm-4" value="Submit">
+        </form>
+        </div>
+    </div>
+    <div *ngIf="f1.submitted">
+        <div  class="backimg"> 
+    <div class="col-md-6 offset-2 mt-6" style="margin-top: 80px;">
+      <h2> Passbook Details</h2>
+      <table class="table table-striped rounded">
+        <thead class="bg-dark text-white rounded">
+        <tr>
+          <th>TransactionId</th>
+          <th>Account Number</th>
+          <th>Amount transacted</th>
+          <th>Client Account Number</th>
+          <th>Transaction Type</th>
+          <th>Transaction Mode</th>
+          <th>Transaction Date</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let passbook of passbookArray">
+          <td>{{passbook.transactionId}}</td>
+          <td>{{passbook.accountNumber}}</td>
+          <td>{{passbook.amountTransacted}}</td>
+          <td>{{passbook. clientaccountNumber}}</td>
+          <td>{{passbook.transactiontype}}</td>
+          <td>{{passbook.transactionMode}}</td>
+          <td>{{passbook.dateoftransaction|date:'dd-MMM-yyyy'}}</td>
+          <td>{{passbook.status}}</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    </div>
